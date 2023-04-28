@@ -17,6 +17,7 @@ const model = openai.GPT3Dot5Turbo
 
 var client = config.NewClient()
 var conversation = []openai.ChatCompletionMessage{}
+var wait = time.Second // time to wait if rate limit reached
 
 func main() {
 	fmt.Printf("Chat using %s\nEnter a question - an empty line will stop the conversation\n", model)
@@ -24,27 +25,22 @@ func main() {
 	for scanner.Scan() {
 		input := scanner.Text()
 		input = strings.Trim(input, " \n\r\t")
-		if VERBOSE >= 2 {
-			fmt.Println("QUESTION : ", input)
-		}
 		if input == "" {
 			fmt.Println("Stop requested")
 			break
 		}
+
 		resp, err := Ask(input)
-		fmt.Println("REPONSE : ", resp)
+
+		fmt.Printf("%s\n\n", resp)
 		if err != nil {
 			fmt.Println(err)
 			break
 		}
-		time.Sleep(time.Second / 2)
-		input = ""
-	}
-	fmt.Println("\nRésumé de la conversation :")
-	for i, m := range conversation {
-		fmt.Printf("\n%d) %s %s\n%s\n", i, strings.ToUpper(m.Role), m.Name, m.Content)
+
 	}
 
+	Summary()
 	fmt.Println("\nDone.")
 
 }
@@ -70,9 +66,17 @@ func Ask(question string) (string, error) {
 	)
 
 	if err != nil {
+		if strings.Contains(err.Error(), "Rate limit reached") { // rate limit exceeded
+			fmt.Println("... please wait - rate limit reached, retrying ...")
+			time.Sleep(wait)
+			wait = wait * 2
+			s, err := Ask(question) // try again ...
+			return s, err
+		}
 		return "", err
 	}
 
+	wait = time.Second // reset wait to default
 	// update conversation
 	conversation = append(conversation, resp.Choices[0].Message)
 
@@ -82,4 +86,13 @@ func Ask(question string) (string, error) {
 
 	return resp.Choices[0].Message.Content, nil
 
+}
+
+// Print summary of conversation.
+func Summary() {
+
+	fmt.Println("\nRésumé de la conversation :")
+	for i, m := range conversation {
+		fmt.Printf("\n%d\t%s %s:\n%s\n", i, m.Role, m.Name, m.Content)
+	}
 }
