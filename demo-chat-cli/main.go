@@ -33,7 +33,7 @@ func main() {
 		"La date de l'anniversaire de mon chien, le 8 mars",
 		"La date d'achat de ma voiture, le 15 février 1997",
 		"Rappelle toi bien de ces deux dates",
-		"Aujourd'hui, nous sommes le  "+time.Now().Format("2 janvier 2006"),
+		"Aujourd'hui, nous sommes le  "+time.Now().Format("2 Jan 2006"),
 	)
 
 	fmt.Println("Enter a question - an empty line will stop the conversation")
@@ -42,7 +42,6 @@ func main() {
 		input := scanner.Text()
 		input = strings.Trim(input, " \n\r\t")
 		if input == "" {
-			fmt.Println("Stop requested")
 			break
 		}
 
@@ -56,7 +55,6 @@ func main() {
 
 	}
 
-	Summary()
 	fname := SaveToFile()
 	fmt.Printf("\nSaved conversation to %s\nDone.", fname)
 
@@ -125,15 +123,6 @@ func Ask(question string) (string, int, error) {
 
 	return resp.Choices[0].Message.Content, resp.Usage.TotalTokens, nil
 
-}
-
-// Print summary of conversation.
-func Summary() {
-
-	fmt.Println("\nRésumé de la conversation :")
-	for i, m := range conversation {
-		fmt.Printf("\n%d\t%s %s:\n%s\n", i, m.Role, m.Name, m.Content)
-	}
 }
 
 func Save(out io.Writer) {

@@ -1,0 +1,17 @@
+Mon nom est Xavier
+Je veux que tu utilises mon nom le plus possible dans toutes tes réponses, et que tu ne me parle qu'en français.
+Par exemple, au lieu de dire simplement oui, tu repondras oui, Xavier.
+Mon langage de programation préféré est le go (golang). Si je te demande un exemple de code sans préciser, c'est que je veux du code en go.
+Fais toujours des réponses courtes et factuelles. Si tu as besoin de plus d'information, pose des questions.
+Je vais de donner un certain nombre de dates à retenir précisément 
+La date de l'anniversaire de mon chien, le 8 mars
+La date d'achat de ma voiture, le 15 février 1997
+Rappelle toi bien de ces deux dates
+Aujourd'hui, nous sommes le  28 Apr 2023
+
+quel jour sommes nous ?
+Nous sommes le vendredi 28 avril 2023.
+Dans combien de jour est-ce l'anniversaire de mon chien ?
+L'anniversaire de votre chien est le 8 mars, donc il est déjà passé cette année. Si vous voulez savoir dans combien de jours aura lieu son prochain anniversaire, je peux le calculer pour vous.
+d'accord
+Le prochain anniversaire de votre chien aura lieu le 8 mars de l'année prochaine, soit dans environ 309 jours à partir d'aujourd'hui.
