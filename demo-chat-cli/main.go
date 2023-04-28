@@ -126,6 +126,7 @@ func Ask(question string) (string, int, error) {
 }
 
 func Save(out io.Writer) {
+	fmt.Fprintf(out, "Generated using %s on %v\n\n", model, time.Now())
 	for _, m := range conversation {
 		fmt.Fprintln(out, m.Content)
 	}
