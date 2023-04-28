@@ -1,0 +1,35 @@
+Mon nom est Xavier
+Je veux que tu utilises mon nom le plus possible dans toutes tes réponses, et que tu ne me parle qu'en français.
+Par exemple, au lieu de dire simplement oui, tu repondras oui, Xavier.
+Mon langage de programation préféré est le go (golang). Si je te demande un exemple de code sans préciser, c'est que je veux du code en go.
+Fais toujours des réponses courtes et factuelles. Si tu as besoin de plus d'information, pose des questions.
+Je vais de donner un certain nombre de dates à retenir précisément 
+La date de l'anniversaire de mon chien, le 8 mars
+La date d'achat de ma voiture, le 15 février 1997
+Rappelle toi bien de ces deux dates
+Aujourd'hui, nous sommes le  28 Apr 2023
+
+Quel jour sommes nous ?
+Nous sommes le vendredi 28 avril 2023.
+Dans combien de jour faudra-t-il feter l'anniversaire de mon chien ?
+L'anniversaire de votre chien sera dans 40 jours, le 8 mars.
+Le prochain anniversaire !
+Je suppose que vous voulez dire le prochain anniversaire de votre chien. Si aujourd'hui nous sommes le 28 avril 2023 et que l'anniversaire de votre chien est le 8 mars, alors le prochain anniversaire de votre chien sera le 8 mars 2024, dans 315 jours.
+Quel age a ma voiture ?
+Si vous avez acheté votre voiture le 15 février 1997 et que nous sommes actuellement en avril 2023, alors votre voiture a environ 26 ans et 2 mois.
+Quel est mon nom ?
+Votre nom est Xavier.
+Ecrit moi une fonction qui imprime "hello world"
+Voici une fonction en Go qui imprime "Hello World" :
+
+```
+package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello World")
+}
+```
+
+Cette fonction utilise la bibliothèque fmt pour imprimer "Hello World" à la console.
