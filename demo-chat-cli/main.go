@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"context"
 	"fmt"
+	"io"
 	"os"
 	"strings"
 	"time"
@@ -20,7 +21,22 @@ var conversation = []openai.ChatCompletionMessage{}
 var wait = time.Second // time to wait if rate limit reached
 
 func main() {
-	fmt.Printf("Chat using %s\nEnter a question - an empty line will stop the conversation\n", model)
+	fmt.Printf("Chat using %s\n", model)
+
+	Learn(
+		"Mon nom est Xavier",
+		"Je veux que tu utilises mon nom le plus possible dans toutes tes réponses, et que tu ne me parle qu'en français.",
+		"Par exemple, au lieu de dire simplement oui, tu repondras oui, Xavier.",
+		"Mon langage de programation préféré est le go (golang). Si je te demande un exemple de code sans préciser, c'est que je veux du code en go.",
+		"Fais toujours des réponses courtes et factuelles. Si tu as besoin de plus d'information, pose des questions.",
+		"Je vais de donner un certain nombre de dates à retenir précisément ",
+		"La date de l'anniversaire de mon chien, le 8 mars",
+		"La date d'achat de ma voiture, le 15 février 1997",
+		"Rappelle toi bien de ces deux dates",
+		"Aujourd'hui, nous sommes le  "+time.Now().Format("2 janvier 2006"),
+	)
+
+	fmt.Println("Enter a question - an empty line will stop the conversation")
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
 		input := scanner.Text()
@@ -30,9 +46,9 @@ func main() {
 			break
 		}
 
-		resp, err := Ask(input)
+		resp, u, err := Ask(input)
 
-		fmt.Printf("%s\n\n", resp)
+		fmt.Printf("%s\n(%d tokens)\n\n", resp, u)
 		if err != nil {
 			fmt.Println(err)
 			break
@@ -41,13 +57,36 @@ func main() {
 	}
 
 	Summary()
-	fmt.Println("\nDone.")
+	fname := SaveToFile()
+	fmt.Printf("\nSaved conversation to %s\nDone.", fname)
 
+}
+
+// Preload the conversation with some facts and assertions.
+// This allows ChatGPT to "learn" a couple of facts and set some preferences.
+// From the doc, it is better to use UserRole than SytemRole.
+func Learn(facts ...string) {
+	for _, f := range facts {
+		conversation = append(conversation,
+			openai.ChatCompletionMessage{
+				Role:    openai.ChatMessageRoleUser,
+				Content: f,
+			},
+		)
+	}
+
+	// add empty line for printing
+	conversation = append(conversation, openai.ChatCompletionMessage{
+		Role:    openai.ChatMessageRoleSystem,
+		Content: "",
+		Name:    "",
+	})
 }
 
 // Ask a new question, update the messages of the conversation, return the response.
 // The context of the conversation is saved.
-func Ask(question string) (string, error) {
+// return reponse, nb of tokens, and error.
+func Ask(question string) (string, int, error) {
 
 	mess := openai.ChatCompletionMessage{
 		Role:    openai.ChatMessageRoleUser,
@@ -60,7 +99,7 @@ func Ask(question string) (string, error) {
 		context.Background(),
 		openai.ChatCompletionRequest{
 			Model:       model,
-			Temperature: 0.5,
+			Temperature: 0.2,
 			Messages:    conversation,
 		},
 	)
@@ -70,10 +109,10 @@ func Ask(question string) (string, error) {
 			fmt.Println("... please wait - rate limit reached, retrying ...")
 			time.Sleep(wait)
 			wait = wait * 2
-			s, err := Ask(question) // try again ...
-			return s, err
+			s, u, err := Ask(question) // try again ...
+			return s, u, err
 		}
-		return "", err
+		return "", 0, err
 	}
 
 	wait = time.Second // reset wait to default
@@ -84,7 +123,7 @@ func Ask(question string) (string, error) {
 		fmt.Printf("\nTRACE ----------\n%#v\nMESSAGES ------------\n%#v\n\n", resp, conversation)
 	}
 
-	return resp.Choices[0].Message.Content, nil
+	return resp.Choices[0].Message.Content, resp.Usage.TotalTokens, nil
 
 }
 
@@ -95,4 +134,21 @@ func Summary() {
 	for i, m := range conversation {
 		fmt.Printf("\n%d\t%s %s:\n%s\n", i, m.Role, m.Name, m.Content)
 	}
+}
+
+func Save(out io.Writer) {
+	for _, m := range conversation {
+		fmt.Fprintln(out, m.Content)
+	}
+}
+
+func SaveToFile() string {
+	fname := time.Now().Format("conv-2006-01-02.150405.txt")
+	f, err := os.Create(fname)
+	if err != nil {
+		panic(err)
+	}
+	defer f.Close()
+	Save(f)
+	return fname
 }

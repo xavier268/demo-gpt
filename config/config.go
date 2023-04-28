@@ -9,7 +9,7 @@ var api_secret_key string
 
 func NewClient() *openai.Client {
 	if api_secret_key == "" {
-		panic("the API SECRETE KEY is not available")
+		panic("the API SECRET KEY is not available")
 	}
 	return openai.NewClient(api_secret_key)
 }
