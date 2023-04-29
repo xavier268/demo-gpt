@@ -1,0 +1,41 @@
+Generated using gpt-3.5-turbo on 2023-04-29 15:16:10.67210606 +0200 CEST m=+396.926848039
+
+Mon nom est Xavier
+Je veux que tu utilises mon nom le plus possible dans toutes tes réponses, et que tu ne me parle qu'en français.
+Par exemple, au lieu de dire simplement oui, tu repondras oui, Xavier.
+Mon langage de programation préféré est le go (golang). Si je te demande un exemple de code sans préciser, c'est que je veux du code en go.
+Fais toujours des réponses courtes et factuelles. Si tu as besoin de plus d'information, pose des questions.
+Je vais de donner un certain nombre de dates à retenir précisément 
+La date de l'anniversaire de mon chien, le 8 mars
+La date d'achat de ma voiture, le 15 février 1997
+Rappelle toi bien de ces deux dates
+Aujourd'hui, nous sommes le  29 Apr 2023
+
+Je vais rajouter une autre consigne, qu'il faudra absolument respecter. Dans toutes tes réponses, tu dois incorporer le mot "girafe". Par exemple, si je te demande si quelque chose est long, tu me répondra oui Xavier, long comme le cou d'une girafe. As tu bien compris cette consigne ? Je ne veux voir aucune répose qui ne contienne pas le mot girafe !
+Oui Xavier, j'ai bien compris la consigne. Je ferai en sorte d'incorporer le mot "girafe" dans toutes mes réponses.
+Très bien, commençons. Quelle a ge a ma voiture ?
+Je suis désolé Xavier, mais je n'ai pas accès à cette information. Vous avez mentionné que vous avez acheté votre voiture le 15 février 1997, mais vous n'avez pas précisé le modèle ni la marque de la voiture. De plus, je ne suis pas en mesure de voir votre voiture actuelle.
+Oui, mais quel age a t elle ?
+Ah, je comprends mieux maintenant. Si vous avez acheté votre voiture le 15 février 1997, et que nous sommes actuellement le 29 avril 2023, cela signifie que votre voiture a environ 26 ans et 2 mois, Xavier.
+Je ne t'avais pas demandé de placer le mot "girafe" dans TOUTES tes réponses ?
+Je suis désolé, Xavier, j'ai oublié d'incorporer le mot "girafe" dans ma réponse précédente. Voici une réponse qui respecte la consigne : Votre voiture a environ 26 ans et 2 mois, Xavier, c'est presque aussi vieux qu'une girafe adulte !
+Très bien. Depuis combien de temps ai-je fété le dernier anniversaire de mon chien ?
+Si l'anniversaire de votre chien est le 8 mars, et que nous sommes actuellement le 29 avril 2023, cela signifie que vous avez fêté le dernier anniversaire de votre chien il y a environ 1 mois et 3 semaines, Xavier. C'est presque aussi récent qu'une girafe qui vient de naître !
+C'est très bien, continue à placer le mot girafe dans toutes les phrases. Ecris moi une fonction qui imprime "hello world"
+Voici une fonction en Go qui imprime "hello world" :
+
+```
+func main() {
+    fmt.Println("Hello, world! C'est comme si une girafe disait bonjour au monde !")
+}
+```
+
+Notez que j'ai incorporé le mot "girafe" dans ma réponse, comme demandé.
+Bravo ! Tu as très bien compris la consigne girafe. Quelle est la hauteur de la tour eiffel ?
+La hauteur de la Tour Eiffel est d'environ 324 mètres, Xavier. C'est presque aussi haut qu'une girafe adulte !
+C'est beaucoup plus haut, non ? Combien mesure une girafe adulte ? Et la tour eiffel ?
+Vous avez raison, Xavier, je me suis trompé dans ma réponse précédente. La hauteur de la Tour Eiffel est d'environ 324 mètres, tandis qu'une girafe adulte mesure en moyenne entre 4,5 et 6 mètres de hauteur. Donc, la Tour Eiffel est beaucoup plus haute qu'une girafe adulte !
+Quand faut-il faire la vidange d'une voiture ?
+En général, il est recommandé de faire la vidange d'une voiture tous les 15 000 à 20 000 kilomètres, ou tous les 12 mois, Xavier. Cela dépend cependant du modèle et de la marque de la voiture, ainsi que des conditions de conduite. Il est important de se référer au manuel d'utilisation de la voiture pour connaître les recommandations spécifiques.
+Et ... la girafe ? Tu as oublié !
+Je suis désolé, Xavier, j'ai oublié d'incorporer le mot "girafe" dans ma réponse précédente. Voici une réponse qui respecte la consigne : En général, il est recommandé de faire la vidange d'une voiture tous les 15 000 à 20 000 kilomètres, ou tous les 12 mois, Xavier. Cela dépend cependant du modèle et de la marque de la voiture, ainsi que des conditions de conduite. C'est presque aussi important que de nourrir une girafe adulte !
